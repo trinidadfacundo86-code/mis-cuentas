@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#f97316">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Mis Cuentas">
+  <title>Mis Cuentas</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" href="favicon.svg">
+</head>
+
+
+<body>
+  <div class="header">
+    <div>
+      <h1>📋 Mis Cuentas</h1>
+      <p class="subtitle">Control simple de pagos mensuales</p>
+    </div>
+    <button class="btn" onclick="openModal()">+ Nueva cuenta</button>
+  </div>
+
+  <!-- ALERTAS -->
+  <div class="alerts" id="alertsPanel">
+    <h2 class="alerts-title">🔔 Avisos de vencimiento</h2>
+    <div id="alertsList"></div>
+  </div>
+
+  <!-- TABLA PRINCIPAL -->
+  <h2>Tabla de cuentas</h2>
+  <div class="table-wrapper">
+    <table id="accountsTable">
+      <thead>
+        <tr>
+          <th>Cuenta</th>
+          <th>Ene</th><th>Feb</th><th>Mar</th><th>Abr</th>
+          <th>May</th><th>Jun</th><th>Jul</th><th>Ago</th>
+          <th>Sep</th><th>Oct</th><th>Nov</th><th>Dic</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+  </div>
+  <p class="hint">
+    💡 Tocá una casilla para marcarla como <strong class="green">Pagado</strong>. 
+    Amarillo/rojo = se acerca el vencimiento y aún no está pagada.
+  </p>
+
+  <!-- CALENDARIO -->
+  <h2>Calendario</h2>
+  <div class="calendar-nav">
+    <button class="btn btn-secondary" onclick="changeMonth(-1)">‹</button>
+    <h3 id="monthLabel"></h3>
+    <button class="btn btn-secondary" onclick="changeMonth(1)">›</button>
+  </div>
+  <div class="calendar" id="calendar"></div>
+
+  <!-- MODAL NUEVA CUENTA -->
+  <div class="modal-overlay" id="modal">
+    <div class="modal">
+      <h3>Agregar nueva cuenta</h3>
+      <div class="form-group">
+        <label>Nombre de la cuenta</label>
+        <input type="text" id="newName" placeholder="Ej: Luz, Antel, OCA..." maxlength="30">
+      </div>
+      <div class="form-group">
+        <label>Día de vencimiento (1 al 31)</label>
+        <input type="number" id="newDay" min="1" max="31" placeholder="Ej: 15">
+      </div>
+      <div class="form-group">
+        <label>Monto aproximado ($)</label>
+        <input type="number" id="newAmount" min="0" step="1" placeholder="Ej: 1200">
+      </div>
+      <div class="form-actions">
+        <button class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
+        <button class="btn" onclick="addAccount()">Guardar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
